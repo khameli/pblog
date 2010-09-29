@@ -1,0 +1,15 @@
+Icons Credits
+
+Yusuke Kamiyamane
+http://www.pinvoke.com/
+(clock.png, reload.png)
+
+
+Mark James
+http://www.famfamfam.com/about/
+(tag_blue.png)
+
+
+Gasyoun
+http://twitter.com/gasyoun
+(comments.png)

@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Pblog Admin</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="{{ admin_url }}/admin.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{{ admin_url }}/post.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{{ theme_url }}/codehilite.css" type="text/css" media="screen" />
+    <link rel="icon" href="{{ admin_url }}/favicon.png" type="image/ico" />
+</head>
+<body>
+    <div id="container">
+
+        <div id="sidebar">
+
+            <div class="header">
+            </div><!-- /header -->
+
+            <div id="menu">
+                <div class="item"><h3 class="link"><a href="{{ reverse_url("Admin") }}">Admin Panel</a></h3></div>
+                <div class="item"><h3>Articles</h3></div>
+                <ul>
+                    <li><a href="{{ reverse_url("PostList") }}">Edit</a></li>
+                    <li><a href="{{ reverse_url("PostEdit", "0") }}">Add</a></li>
+                </ul>
+                <div class="item"><h3>Comments</h3></div>
+                <ul>
+                    <li><a href="{{ reverse_url("CommentList") }}">Edit</a></li>
+                </ul>
+                <div class="item"><h3>Pages</h3></div>
+                <ul>
+                    <li><a href="{{ reverse_url("PageList") }}">Edit</a></li>
+                    <li><a href="{{ reverse_url("PageEdit", "0") }}">Add</a></li>
+                </ul>
+                <div class="item"><h3>Media</h3></div>
+                <ul>
+                    <li><a href="{{ reverse_url("MediaList") }}">Library</a></li>
+                </ul>
+                <div class="item"><h3>Design</h3></div>
+                <ul>
+                    <li><a href="{{ reverse_url("DesignList") }}">Designs</a></li>
+                </ul>
+                <div class="item"><h3>Settings</h3></div>
+                <ul>
+                    <li><a href="{{ reverse_url("ConfEdit") }}">General</a></li>
+                    <li><a href="{{ reverse_url("ManageLinks") }}">Links</a></li>
+                </ul>
+
+            </div><!-- /menu -->
+
+        </div><!-- /sidebar -->
+
+        <div id="main">
+
+            <div class="header">
+                <div id="logout">
+                    <a href="{{ reverse_url("Login") }}">Logout &raquo;</a>
+                </div>
+                <div id="return-blog">
+                    <a href="{{ reverse_url("root") }}">&laquo; Return to {{ conf.title }}</a>
+                </div>
+            </div><!-- /header -->
+
+            <div id="page">
+                <div id="content">
+                    {% block content %}{% end %}
+                </div><!-- /content -->
+            </div><!-- /page -->
+        </div><!-- /main -->
+
+        <div class="clear"></div>
+        <div id="footer">
+            <a href="#">Pblog 2.0</a> | <a href="#">Documentation</a> | <a href="#">Git</a> 
+            | <a href="#">Templates</a> | <a href="#">Licence</a>
+        </div><!-- /footer -->
+
+    </div><!-- /container -->
+
+</body>
+</html>

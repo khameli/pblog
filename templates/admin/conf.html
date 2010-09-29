@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ _("General Settings") }}</h1>
+<form method="post">
+
+{% if request.method == "POST" and form.valid %}
+    <h3>{{ _("Configuration successfully changed") }}</h3>
+{% end %}
+
+{% for f in form.inputs %}
+    <p>
+        <label for="{{ f.id }}">{{ escape(f.description) }}</label>
+        {{ f.render() }}
+        <span class="field-description">{{ escape(f.pre) }}<span>
+        {% if f.note %}
+            <p>{{ escape(f.note) }}</p>
+        {% end %}
+    </p>
+{% end %}
+
+<input type="submit" class="button" value="{{ _("Apply") }}" />
+</form>
+{% end %}

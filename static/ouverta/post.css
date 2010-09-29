@@ -1,0 +1,253 @@
+/**********************************
+ *  ===== Entry Editing CSS =====
+ *
+ * Ouverta 1.0
+ * Template for Pblog
+ * http://www.philpep.org/pblog
+ * ===============================
+ * Design by Bender
+ * Licensed under CC-BY-SA
+ * http://design.bender-labs.org/
+ * ===============================
+ * Icons Credits
+ *
+ * Yusuke Kamiyamane
+ * http://www.pinvoke.com/
+ * (clock.png, reload.png)
+ *
+ * Mark James
+ * http://www.famfamfam.com/about/
+ * (tag_blue.png)
+ *
+ * Gasyoun
+ * http://twitter.com/gasyoun
+ * (comments.png)
+ **********************************/
+
+
+/**********************************
+ * Entry Formatting
+ **********************************/
+
+#content .post .entry, 
+#preview-box, #content .post #preview-box  {
+ line-height:18px;
+ background:#F7F7F7;
+ font-size:12px;
+}
+
+#content .post .entry p , #content .post .comment .content p, 
+#preview-box p, #content .post #preview-box p {
+ background:#F7F7F7;
+ margin:1em 0;
+ color:#4B4B4B;
+ font-family:sans-serif;
+}
+
+/* links */
+#content .post .entry a, #content .post .comment .content a, 
+#preview-box a, #content .post #preview-box a {
+ color:#B44517;
+}
+#content .post .entry a:hover, #content .post .comment .content a:hover, 
+#preview-box a:hover, #content .post #preview-box a:hover {
+ text-decoration:underline;
+}
+
+/* pictures */
+#content .post .entry img, #content .post .comment .content img, 
+#preview-box img, #content .post #preview-box img {
+ margin:auto;
+ max-width:90%;
+ padding:8px;
+ border:1px solid #dddddd;
+}
+
+/* lists */
+#content .post .entry ul, #content .post .entry ol, 
+#content .post .comment .content ul, #content .post .comment .content ol, 
+#preview-box ul, #preview-box ol, 
+#content .post #preview-box ul, #content .post #preview-box ol {
+ margin:1em 1em 1em 3em;
+}
+#content .post .entry li, 
+#content .post .comment .content li, 
+#preview-box li, 
+#content .post #preview-box li {
+ font-size:12px;
+ color:#4B4B4B;
+}
+
+/* titles */
+#content .post .entry h1, #content .post .comment .content h1, 
+#preview-box h1, #content .post #preview-box h1 {
+ font-size:18.5px;
+ font-weight:normal;
+ margin:1em 0;
+ border-bottom:1px solid #AAAAAA;
+ margin-top:20px;
+ line-height:24px;
+ text-shadow:0 0 0;
+ font-family:sans-serif;
+ background:#F7F7F7;
+ color:#4B4B4B;
+}
+#content .post .entry h2, #content .post .comment .content h2, 
+#preview-box h2, #content .post #preview-box h2 {
+ border-bottom:1px solid #AAAAAA;
+ background:none; 
+ font-size:17px;
+ font-weight:normal;
+ margin:1em 0;
+ margin-top:20px;
+ text-shadow:0 0 0;
+ background:#F7F7F7;
+ color:#4B4B4B;font-family:sans-serif;
+}
+#content .post .entry h3, #content .post .comment .content h3, 
+#preview-box h3, #content .post #preview-box h3 {
+ border-bottom:1px solid #AAAAAA;
+ font-size:16px;
+ font-weight:normal;
+ margin:1em 0;
+ margin-top:20px;
+ text-shadow:0 0 0;
+ background:#F7F7F7;
+ color:#4B4B4B;font-family:sans-serif;
+}
+#content .post .entry h4, #content .post .comment .content h4, 
+#preview-box h4, #content .post #preview-box h4 {
+ border-bottom:1px dotted #AAAAAA;
+ font-size:15px;
+ font-weight:normal;
+ margin:1em 0;
+ margin-top:20px;
+ text-shadow:0 0 0;
+ background:#F7F7F7;
+ color:#4B4B4B;font-family:sans-serif;
+}
+#content .post .entry h5, #content .post .comment .content h5, 
+#preview-box h5, #content .post #preview-box h5 {
+ border-bottom:1px dotted #AAAAAA;
+ font-size:13px;
+ font-weight:normal;
+ margin:1em 0;
+ margin-top:20px;
+ text-shadow:0 0 0;
+ background:#F7F7F7;
+ color:#4B4B4B;font-family:sans-serif;
+}
+#content .post .entry h6, #content .post .comment .content h6, 
+#preview-box h6, #content .post #preview-box h6 {
+ border-bottom:1px dotted #AAAAAA;
+ font-size:11px;
+ font-weight:normal;
+ margin:1em 0;
+ margin-top:20px;
+ text-shadow:0 0 0;
+ background:#F7F7F7;
+ color:#4B4B4B;font-family:sans-serif;
+}
+
+/* code block */
+#content .post .entry pre, #content .post .comment .content pre, 
+#preview-box pre, #content .post #preview-box pre {
+ margin-left:20px;
+ margin-right:20px;
+ background:#f4f4f4;
+ border:1px dashed #DDDDDD;
+ padding:8px;
+ overflow:auto;
+ color:#4B4B4B;
+ font-size:13px;
+}
+#content .post .entry code, #content .post .comment .content code, 
+#preview-box code, #content .post #preview-box code {
+ color:#4B4B4B;
+ font-size:13px;
+}
+
+#content .post .entry table.codehilitetable, #content .post .comment .content table.codehilitetable,
+#preview-box .post .entry table.codehilitetable, #content .post #preview-box table.codehilitetable {
+ margin-left:20px;
+ margin-right:20px;
+}
+#content .post .entry .codehilitetable td.linenos, #content .post .entry .codehilitetable td.code,
+#content .post .comment .content .codehilitetable td.linenos, #content .post .comment .content .codehilitetable td.code,
+#preview-box .post .entry .codehilitetable td.linenos, #preview-box .post .entry .codehilitetable td.code,
+#content .post #preview-box .codehilitetable td.linenos, #content .post #preview-box .codehilitetable td.code {
+ border:1px solid #DDDDDD;
+ padding:8px;
+}
+
+#content .post .entry .codehilitetable td.linenos pre, #content .post .entry .codehilitetable td.code pre, 
+#content .post .comment .content .codehilitetable td.linenos pre, #content .post .comment .content .codehilitetable td.code pre,
+#preview-box .post .entry .codehilitetable td.linenos pre, #preview-box .post .entry .codehilitetable td.code pre,
+#content .post #preview-box .codehilitetable td.linenos pre, #content .post #preview-box .codehilitetable td.code pre {
+ border:0;
+ padding:0;
+ margin:0;
+}
+
+
+/* quote block */
+#content .post .entry blockquote, #content .post .comment .content blockquote, 
+#preview-box blockquote, #content .post #preview-box blockquote {
+ margin:20px 10px 20px 10px;
+ padding:0px;
+ border:1px solid #dedad0;
+ background:url(img/quote1.png) no-repeat 8px 8px white;
+}
+#content .post .entry blockquote p, #content .post .comment .content blockquote p, 
+#preview-box blockquote p, #content .post #preview-box blockquote p {
+ min-height:30px;
+ display:block;
+ margin:10px 10px 10px 0px;
+ padding:10px 35px 16px 35px;
+ background:url(img/quote2.png) no-repeat transparent;
+ background-position:bottom right;
+ white-space:pre-wrap;
+ text-indent:20px;
+ font-style:italic;
+ font-family:Georgia,arial;
+ font-size:13px;
+}
+
+/* table */
+#content .post .entry table, #content .post .comment .content table, 
+#preview-box table, #content .post #preview-box table {
+ border-collapse: collapse;
+ margin:15px auto;
+}
+#content .post .entry th, #content .post .entry td, 
+#content .post .comment .content th, #content .post .comment .content td, 
+#preview-box th, #preview-box td, 
+#content .post #preview-box th, #content .post #preview-box td  {
+ border:1px solid #dedad0;
+ padding:15px;
+}
+#content .post .entry th, #content .post .comment .content th, 
+#preview-box th, #content .post #preview-box th {
+ background-color:#edece9;
+}
+
+#content .post .entry hr, #content .post .comment .content hr, 
+#preview-box hr, #content .post #preview-box hr {
+ background:url(img/menu-bg-bottom.png) repeat-x;
+ border:0;
+ height:2px;
+ margin:20px 0px 20px 0px;
+}
+
+/* class for markdown usage */
+.align-right {
+ text-align:right;
+}
+.align-center {
+ text-align:center;
+}
+.align-left {
+ text-align:left;
+}
+/**********************************
+ **********************************/

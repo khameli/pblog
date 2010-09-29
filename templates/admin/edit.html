@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Edit</h1>
+    <form method="post">
+
+    {% for v in post.errors.values() %}
+        <div class="warn">{{ escape(v) }}</div>
+    {% end %}
+
+    <p>
+        <label for="article_title">Title : </label>
+        <input type="text" name="title" id="article_title" class="large-form-input" value="{{ escape(post.title) }}" />
+    </p>
+
+    <p>
+        <label for="article_tags">Tags : </label>
+        <input type="text" name="tags" id="article_tags" class="medium-form-input" value="{{ ",".join([escape(t.name) for t in post.tags]) }}" />
+        <span class="field-description">Seperate your tags with a comma, for example : "foo, bar, zar"</span>
+    </p>
+
+    <div class="warn">
+    <div id="content-block">
+        <textarea id="article_content" class="form-content" rows="0" cols="90" name="content">{{ escape(post.content) }}</textarea>
+    </div><!-- /content-block -->
+
+    <p>
+        <input type="submit" class="button" value="Send" />
+    </p>
+
+
+    <div class="clear-right"></div>
+    <noscript><p>You must enable Javascript to see the preview.</p></noscript>
+
+
+<div class="htabs">
+    <div class="htab_sub2">
+        <div class="box" style="margin-left:10px;margin-top:10px;">
+            <div class="box-header">
+                <span class="caption">Options</span>
+            </div>
+            <div class="box-content">
+
+                <p style="margin-top:0;padding:10px;">
+                    <label for="article_url">Url : </label>
+                    <input type="text" name="slug" id="article_url" class="large-form-input murl" value="{{ escape(post.slug) }}" />
+                </p>
+                <p style="padding:10px;">
+                <input type="checkbox" {% if post.comments_allowed %}checked="checked"{% end %} name="comments_allowed" id="allow_comments"/> <label for="allow_comments">Comments allowed</label>
+                </p>
+            </div><!-- /box-content -->
+        </div><!-- /box -->        
+    </div><!-- /htab_sub2 -->
+
+    <div class="htab_sub2">
+        <div class="box" style="margin-right:20px;margin-top:10px;">
+            <div class="box-header">
+                <span class="caption">Publication</span>
+            </div>
+            <div class="box-content">
+                <p style="padding:10px;">
+                    <input type="checkbox" {% if post.published %}checked="checked"{% end %} name="published" id="published" /><label for="article_status">Published</label>
+                </p>
+            </div><!-- /box-content -->
+        </div><!-- /box -->        
+    </div><!-- /htab_sub2 -->    
+
+    <div class="clear-right"></div>
+</div><!-- /htabs -->
+</form>
+<!--<iframe src="" id="framepreview" name="framepreview" style="display:none"></iframe>-->
+
+{% end %}

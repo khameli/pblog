@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Comments</h1>
+<table>
+    <tr>
+        <th>Author</th>
+        <th>Article</th>
+        <th>Date</th>
+        <th>Email</th>
+        <th>IP</th>
+    </tr>
+    {% for comment in comments.object_list %}
+    <tr>
+        <td>{{ escape(comment.name) }}</td>
+        <td>{{ escape(comment.post.title) }}</td>
+        <td>{{ comment.post_date.strftime("%a, %d %b %Y") }}</td>
+        <td><a href="mailto:{{ escape(comment.email) }}">{{ escape(comment.email) }}</a></td>
+        <td>{{ escape(comment.ip) }}</td>
+    </tr>
+    {% end %}
+</table>
+
+<ul id="nav-pages">
+    {% for i in comments.paginator.page_range %}
+        {% if i == comments.number %}
+            <li><span>{{ i }}</span></li>
+        {% else %}
+            <li><a href="?p={{ i }}" class="nav-other-pages">{{ i }}</a></li>
+        {% end %}
+    {% end %}
+</ul>
+
+{% end %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Articles List</h1>
+
+<form method="post" style="display:inline;">
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Comments</th>
+        <th class="th-action">Action</th>
+    </tr>
+    {% for post in posts.object_list %}
+        <tr>
+            <td class="align-left"><a href="{{ reverse_url("view", post.slug) }}">{{ escape(post.title) }}</a></td>
+            <td>{{ post.post_date.strftime("%a, %d %b %Y") }}</td>
+            <td><a href="{{ reverse_url("CommentList") }}?pid={{ post.id }}">{{ post.comment_count }}</a></td>
+            <td>
+                <p class="no-space-border" style="display:inline;">
+                    <a href="{{ reverse_url("PostEdit", post.id) }}" class="button blue-button small-button-text inline-input">Edit</a>
+                </p>
+                <p class="no-space-border" style="display:inline;">
+                    <input type="submit" name="{{ post.id }}" value="Delete" class="button red-button small-button-text inline-input" />
+                </p>
+            </td>
+        </tr>
+    {% end %}
+    </table>
+</form>
+
+<ul id="nav-pages">
+    {% for i in posts.paginator.page_range %}
+        {% if i == posts.number %}
+            <li><span>{{ i }}</span></li>
+        {% else %}
+            <li><a href="?p={{ i }}" class="nav-other-pages">{{ i }}</a></li>
+        {% end %}
+    {% end %}
+</ul>
+{% end %}

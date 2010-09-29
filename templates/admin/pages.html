@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Pages List</h1>
+
+<form method="post" action="" style="display:inline;">
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th class="th-action">Action</th>
+        </tr>
+
+        {% for page in pages.object_list %}
+        <tr>
+            <td class="align-left"><a href="{{ reverse_url("view_page", page.slug) }}">{{ escape(page.title) }}</a></td>
+            <td>{{ page.post_date.strftime("%a, %d %b %Y") }}</td>
+            <td>
+                <p class="no-space-border" style="display:inline;">
+                    <a href="{{ reverse_url("PageEdit", page.id) }}" class="button blue-button small-button-text inline-input">Edit</a>
+                </p>
+                <p class="no-space-border" style="display:inline;">
+                    <input type="submit" name="{{ page.id }}" value="Delete" class="button red-button small-button-text inline-input" />
+                </p>
+            </td>
+        </tr>
+        {% end %}
+    </table>
+</form>
+
+<ul id="nav-pages">
+    {% for i in pages.paginator.page_range %}
+        {% if i == pages.number %}
+            <li><span>{{ i }}</span></li>
+        {% else %}
+            <li><a href="?p={{ i }}" class="nav-other-pages">{{ i }}</a></li>
+        {% end %}
+    {% end %}
+</ul>
+
+{% end %}

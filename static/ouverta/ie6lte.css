@@ -1,0 +1,45 @@
+#header #top-menu {
+ margin-top:20px;
+}
+
+#header { 
+ width:1025px; 
+}
+
+#header #main-menu li {
+ position:relative;
+ top:-27px;
+}
+
+#bblock-content {
+ width:800px;
+ position:absolute;
+ top:145px;
+}
+
+#bblock-sidebar {
+ width:250px;
+ float:none;
+ position:absolute;
+ top:145px;
+ left:755px;
+}
+
+#footer { 
+ position:absolute;
+ top:1px;
+ left:800px;
+ font-size:9px;
+ margin:0;
+ color:#d5d4cf;
+}
+
+#footer a {
+ font-family:sans-serif;
+ font-size:9px;
+ color:#f2b298;
+}
+
+#search-block-footer {
+ display:none;
+}

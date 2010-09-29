@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	{% set date_format = "%Y-%m-%dT%H:%M:%SZ" %}
+	{% set base_url = "%s://%s%s" % (request.protocol, request.host, request.uri,) %}
+	<title type="text">{{ escape(conf.title) }}</title>
+	<id>{{ base_url }}{{ request.uri }}</id>
+	<link rel="self" href="{{ base_url }}{{ request.uri }}" />
+	<link rel="alternate" type="text/html" href="{{ base_url }}{{ reverse_url("root") }}" />
+	<updated>{{ posts[0].post_date.strftime(date_format) }}</updated>
+	<generator uri="https://projects.philpep.org/projects/pblog/" version="Pblog 2.0">Pblog 2.0</generator>
+		{% for item in posts %}
+		<entry>
+			<title type="text">{{ escape(item.title) }}</title>
+			<author><name>{{ escape(conf.title) }}</name></author>
+			<content type="html">{{ escape(item.render) }}</content>
+			{% for tag in item.tags %}
+				<category term="{{ escape(tag.name) }}" />
+			{% end %}
+			<id>{{ base_url }}{{ reverse_url(*item.url_args) }}</id>
+			<link rel="alternate" href="{{ base_url }}{{ reverse_url(*item.url_args) }}" />
+			<updated>{{ item.post_date.strftime(date_format) }}</updated>
+			<published>{{ item.post_date.strftime(date_format) }}</published>
+		</entry>
+		{% end %}
+</feed>

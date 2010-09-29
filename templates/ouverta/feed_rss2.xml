@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+		{% set date_format = "%a, %d %b %Y %X GMT" %}
+		{% set base_url = "%s://%s" % (request.protocol, request.host,) %}
+        <title>{{ escape(conf.title) }}</title>
+		<atom:link href="{{ base_url }}{{ request.uri }}" rel="self" type="application/rss+xml" />
+        <description>{{ escape(conf.title) }}</description>
+		<link>{{ base_url }}{{ reverse_url("root") }}</link>
+        <language>{{ conf.lang }}</language>
+        <lastBuildDate>{{ posts[0].post_date.strftime(date_format) }}</lastBuildDate>
+        <generator>Pblog</generator>
+        {% for item in posts %}
+        <item>
+            <title>{{ escape(item.title) }}</title>
+			<link>{{ base_url }}{{ reverse_url(*item.url_args) }}</link>
+			<guid>{{ base_url }}{{ reverse_url(*item.url_args) }}</guid>
+            {% for tag in item.tags %}
+            <category>{{ escape(tag.name) }}</category>
+            {% end %}
+            <pubDate>{{ item.post_date.strftime(date_format) }}</pubDate>
+            <description>{{ escape(item.render) }}</description>
+        </item>
+        {% end %}
+    </channel>
+</rss>

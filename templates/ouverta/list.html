@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}{{ conf.title }}{% end %}
+
+{% block content %}
+    {% for post in posts.object_list %}
+    <div class="post">
+        <h2><a href="{{ reverse_url("view", post.slug) }}">{{ escape(post.title) }}</a></h2>
+        <div class="metainfos">
+            <div class="date">
+                <img src="{{ theme_url }}/img/clock.png" alt="date" /><br />
+                {{ post.post_date.strftime("%Y / %m / %d") }}
+            </div> <!-- /date -->
+            <div class="tags">
+                <img src="{{ theme_url }}/img/tag_blue.png" alt="date" /><br />
+                {% for tag in post.tags %}
+                    <a href="{{ reverse_url("view_tag", tag.name) }}">{{ escape(tag.name) }}</a> 
+                {% end %}
+            </div> <!-- /tags -->
+            <div class="comments">
+                <img src="{{ theme_url }}/img/comments.png" alt="comments" /><br />
+                <a href="{{ reverse_url("view", post.slug) }}">{{ post.comment_count }}</a>
+            </div> <!-- /comments -->
+            <div class="clear-left"></div>
+        </div><!-- /metainfos -->
+
+        <div class="entry">
+            {{ post.render }}
+        </div><!-- /entry -->
+    </div><!-- /post -->
+    {% end %}
+
+    <ul id="nav-pages">
+        {% for i in posts.paginator.page_range %}
+            {% if i == posts.number %}
+            <li><span class="nav-current-page">{{ i }}</span></li>
+            {% else %}
+            <li><a href="?p={{ i }}" class="nav-other-pages">{{ i }}</a><li>
+            {% end %}
+        {% end %}
+    </ul>
+{% end %}
+

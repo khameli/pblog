@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml12/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+    <head>
+        <title>{% block title %}{{ escape(conf.title) }}{% end %}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" type="text/css" href="{{ theme_url }}/style.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="{{ theme_url }}/post.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="{{ theme_url }}/codehilite.css" media="screen" />
+        <!--[if IE 7]>
+            <link href="{{ theme_url }}/ie7.css" rel="stylesheet" type="text/css" />
+        <![endif]-->
+        <!--[if lte IE 6]>
+            <link href="{{ theme_url }}/ie6lte.css" rel="stylesheet" type="text/css" />
+        <![endif]-->
+        <link rel="icon" type="image/png" href="{{ theme_url }}/favicon.png" />
+        <link rel="alternate" type="application/rss+xml" title="{% block title %}{{ escape(conf.title) }}{% end %}" href="{{ reverse_url("feed_posts", "rss2") }}" />
+    </head>
+    <body>
+        <div id="global">
+            <div id="header">
+                <div id="top-menu">
+                    <a href="{{ reverse_url("root") }}">Home</a> |
+                    <a href="">Flux RSS</a> |
+                    <a href="{{ reverse_url("Admin") }}">Administration</a> |
+                    <a href="{{ reverse_url("Login") }}">{% if current_user == "admin" %}Logout{% else %}Login{% end %}</a>
+                </div><!-- /top-menu -->
+                <h1>
+                    <!-- Here goes your logo (if you have one) between <a> and </a> 
+                        Exemple :
+                        <a href="http://example.com"><img alt="Logo" src="exemple/pblog.png" /></a>
+                        or with text :
+                        <a href="http://example.com"><img alt="Logo" src="exemple/pblog.png" /> Your Blog Title</a>
+                    -->
+                    <a href="{{ reverse_url("root") }}">{{ escape(conf.title) }}</a>
+                </h1><!-- /h1 website title -->    
+                <div class="clear"></div>
+                <div id="main-menu">
+                    <form action="/search">
+                        <div id="search-block">
+                            <input type="submit" class="search-submit" value="Search" />
+                            <input type="text" name="q" class="search-input" />
+                            <div class="clear"></div>
+                        </div>
+                    </form>
+                    <ul>
+                        {% for link in conf.top_links %}
+                        <li {% if link.url == conf.url %}class="main-menu-currenttab"{% end %}>
+                            <a href="{{ url_escape(link.url) }}">{{ escape(link.title) }}</a>
+                        </li>
+                        {% end %}
+                    </ul>
+                    <div class="clear"></div>
+                </div> <!-- /main-menu -->
+            </div>
+
+
+            <div id="main">
+                <div id="bblock-sidebar">
+                    <div id="sidebar">
+                        <h2 class="sidebar-title-rss">Syndication</h2>
+                        <ul class="syndication">
+                            <li><a class="feed" href="{{ reverse_url("feed_posts", "rss2") }}">Posts</a></li>
+                        </ul>
+
+                        <h2 class="sidebar-title-tags">Tags</h2>
+                        <p class="tags">
+                        {% for tag in all_tags %}
+                            <a style="font-size: {{ tag.post_count + 10 if tag.post_count < 12 else 20 }}px;" href="{{ reverse_url("view_tag", tag.name) }}">{{ tag.name }}</a>
+                        {% end %}
+                        </p>
+                        <h2 class="sidebar-title-archives">Archives</h2>
+                        <ul class="archives">
+                            {% for d,n in archives %}
+                            <li><a class="archive" href="{{ reverse_url("view_archive", d.year, d.month) }}">{{ d.strftime("%b, %Y") }} ({{ n }})</a></li>
+                            {% end %}
+                        </ul>
+                        <!--% if c.LINKS:-->
+                        <!--<h2 class="sidebar-title-links">Links</h2>-->
+                        <!--${linklist()}-->
+                        <!--% endif-->
+
+                    </div><!-- sidebar -->
+                </div><!-- bblock-sidebar -->
+                <div id="bblock-content">
+                    <div id="content">{% block content %}{% end %}</div>
+                </div> <!-- /bblock-content -->
+                <div class="clear"></div>
+
+                <form action="/search">
+                    <div id="search-block-footer">
+                        <input type="submit" class="search-submit" value="Search" />
+                        <input type="text" value="Search..." name="q" class="search-input" />
+                    </div>
+                </form>
+                <div class="clear"></div>
+            </div><!-- main -->
+
+            <div id="footer">
+                <p><a href="{{ reverse_url("root") }}">{{ escape(conf.title) }}</a> is Powered by <a href="http://www.philpep.org/pblog/">Pblog2</a> | 
+                Template by <a href="http://design.bender-labs.org/">Bender</a></p>
+            </div><!-- /footer -->
+        </div><!-- global -->
+    </body>
+</html>
+

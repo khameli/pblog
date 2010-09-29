@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Administration</h1>
+
+<div class="box">
+    <div class="box-header">
+        <span class="caption">{{ _("Last 5 Comments") }}</span>
+    </div>
+    <div class="box-content">
+        <ul>
+            {% for comment in last_comments %}
+                <li>
+                    <a href="{{ reverse_url("CommentList") }}?id={{ comment.id }}">{{ escape(comment.name) }}</a><br />
+                    {{ comment.post_date.strftime("%d-%m-%Y %H:%M:%S") }}<br />
+                </li>
+            {% end %}
+        </ul>
+    </div><!-- /box-content -->
+</div><!-- /box -->
+{% end %}

@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}{{ post.title }}{% end %}
+
+{% block content %}
+    <!-- Post -->
+    <div class="post">
+        <h2><a href="{{ reverse_url("view", post.slug) }}">{{ escape(post.title) }}</a></h2>
+        <div class="metainfos">
+            <div class="date">
+                <img src="{{ theme_url }}/img/clock.png" alt="date" /><br />
+                {{ post.post_date.strftime("%Y / %m / %d") }}
+            </div> <!-- /date -->
+
+            <div class="tags">
+                <img src="{{ theme_url }}/img/tag_blue.png" alt="date" /><br />
+                {% for tag in post.tags %}
+                    <a href="{{ reverse_url("view_tag", tag.name) }}">{{ escape(tag.name) }}</a> 
+                {% end %}
+            </div> <!-- /tags -->
+
+            <div class="comments">
+                <img src="{{ theme_url }}/img/comments.png" alt="comments" /><br />
+                <a href="#comments-anchor">{{ post.comment_count }}</a>
+            </div> <!-- /comments -->
+
+            <div class="clear-left"></div>
+        </div><!-- /metainfos -->
+
+        <div class="entry">
+            {{ post.render }}
+        </div><!-- /entry -->
+
+        {% if post.comments %}
+            <div id="comments-block">
+                <h3 id="comments-anchor">{{ _("Comments") }}: {{ post.comment_count }}</h3>
+
+                {% for comment in post.comments %}
+                    <!-- comment -->
+                    <div class="comment" id="c{{ comment.id }}">
+
+                        <div class="comment-meta">
+                            <span class="author"><strong><a href="#c{{ comment.id }}">{{ escape(comment.name) }}</a></strong></span>
+                            <span class="date">
+                                {{ comment.post_date.strftime("%Y / %m / %d at %H:%M") }}
+                            </span>
+                        </div>
+                        <div class="content">{{ comment.render }}</div>
+                    </div><!-- /comment -->
+                {% end %}
+            </div><!-- /comments-block -->
+        {% end %}
+
+        <!-- comment form -->
+        {% if post.comments_allowed %}
+        <div id="form-comment">
+            <h3 id="addcom">Add a comment</h3>
+
+            <form method="post" action="#addcom">
+
+                <div id="warnname">{{ escape(new_comment.errors["name"]) }}</div>
+                <p>
+                    <input type="text" name="name" id="name" value="{{ escape(new_comment.name) }}" />
+                    <label for="name">Name</label>
+                </p>
+
+                <div id="warnemail">{{ escape(new_comment.errors["email"]) }}</div>
+                {% if conf.email != EMAIL_DISABLED %}
+                <p>
+                    <input type="text" name="email" id="email" value="{{ escape(new_comment.email) }}" />
+                    <label for="email">Email</label>
+                </p>
+                {% end %}
+
+                <div id="warntext">{{ escape(new_comment.errors["content"]) }}</div>
+                <p>
+                    <textarea name="content" id="textarea_p" rows="0" cols="0">{{ escape(new_comment.content) }}</textarea>
+                    <label for="content">Message</label>
+                </p>
+
+                <div class="clear-left"></div>
+
+                <p style="margin-top:40px;">
+                    <input type="submit" /><br /><br />
+                    Comments are formatted using <a href="http://daringfireball.net/projects/markdown/syntax">markdown syntax</a>.</p>
+            </form>
+
+            <h3 id="preview-title" style="visibility:hidden;">Preview</h3>
+            <div style="display:none;" id="preview-box"></div>
+
+            <noscript><p>You must enable Javascript to see the preview.</p></noscript>
+        </div><!-- /form-comment -->
+        {% else %}
+        <div id="form-comment">{{ _("Comments are disabled") }}</div>
+        {% end %}
+
+    </div><!-- /post -->
+{% end %}
